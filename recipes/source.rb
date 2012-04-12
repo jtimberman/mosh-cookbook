@@ -23,7 +23,7 @@ version = node['mosh']['version']
 remote_file "#{Chef::Config[:file_cache_path]}/mosh-#{version}.tar.gz" do
   source node['mosh']['source_url']
   checksum node['mosh']['source_checksum']
-  notifies :run, resources("bash[build-mosh]"), :immediately
+  notifies :run, resources(:bash => "build-mosh"), :immediately
 end
 
 bash "build-mosh" do
@@ -34,4 +34,5 @@ tar -zxvf mosh-#{version}.tar.gz
 (cd mosh-#{version} && make)
 (cd mosh-#{version} && make install)
 EOH
+  not_if "mosh -v | head -1 | grep -qx 'mosh #{version}'"
 end
