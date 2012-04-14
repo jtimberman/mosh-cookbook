@@ -20,6 +20,12 @@
 build_dir = "#{Chef::Config[:file_cache_path]}/mosh-source"
 version = node['mosh']['version']
 
+include_recipe "apt" if platform?("debian","ubuntu")
+
+node['mosh']['source_depends'].each do |pkg|
+  package pkg
+end
+
 bash "build-mosh" do
   cwd Chef::Config[:file_cache_path]
   code <<-EOH
