@@ -46,6 +46,8 @@ package "mosh" do
                  "net-misc/mosh"
                when "arch"
                  "mobile-shell-git"
+               when "freebsd"
+                 "net/mosh"
                when "mac_os_x"
                  use_brew? ? "mobile-shell" : "mosh"
                else
