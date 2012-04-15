@@ -8,3 +8,5 @@ version          "0.1.0"
 %w{ debian ubuntu mac_os_x mac_os_x_server redhat centos scientific amazon fedora gentoo arch }.each do |os|
   supports os
 end
+
+depends "apt"
