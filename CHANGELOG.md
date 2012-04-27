@@ -1,3 +1,7 @@
+## v0.3.0
+
+- dont namespace use_brew? in Chef::Recipe, makes it unavailable in a resource
+
 ## v0.2.0
 
 - add apt cookbook as a dependency (LWRP is used in package recipe)
