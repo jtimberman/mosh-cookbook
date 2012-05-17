@@ -35,7 +35,7 @@ tar -zxvf mosh-#{version}.tar.gz
 (cd mosh-#{version} && make install)
 EOH
   action :nothing
-  not_if "mosh -v | head -1 | grep -qx 'mosh #{version}'"
+  not_if "mosh -v 2>&1 | head -1 | grep -qx 'mosh #{version}'"
 end
 
 remote_file "#{Chef::Config[:file_cache_path]}/mosh-#{version}.tar.gz" do
