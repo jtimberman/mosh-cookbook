@@ -34,9 +34,7 @@ when "ubuntu"
   end
 
 when "redhat", "centos", "scientific", "amazon"
-  Chef::Log.warn("mosh is not available in any default repositories on RHEL family systems.")
-  Chef::Log.warn("I'll assume you have hosted a package in a repository avaialble to this node and attempt to install anyway.")
-  Chef::Log.warn("If you don't have a mosh package, you may try installing from source by setting node['mosh']['install_type'] to \"source\".")
+  include_recipe "yum::epel"
 end
 
 
