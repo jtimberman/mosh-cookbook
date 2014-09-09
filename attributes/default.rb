@@ -5,7 +5,7 @@ default['mosh']['source_checksum'] = "53234667e53625791ca43ced1ec43834cbd86a019c
 default['mosh']['configure_flags'] = []
 default['mosh']['source_depends'] = case node['platform']
                                     when 'ubuntu', 'debian'
-                                      %w{ protobuf-compiler libprotobuf-dev libboost-dev libutempter-dev libncurses5-dev zlib1g-dev }
+                                      %w{ protobuf-compiler libprotobuf-dev libboost-dev libutempter-dev libncurses5-dev zlib1g-dev libssl-dev pkg-config }
                                     when 'redhat', 'centos', 'oracle', 'scientific', 'amazon'
                                       %w{ protobuf-compiler protobuf-devel boost-devel libutempter-devel ncurses-devel zlib-devel }
                                     else
