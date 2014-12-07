@@ -17,4 +17,24 @@
 # limitations under the License.
 #
 
-include_recipe "mosh::#{node['mosh']['install_type']}"
+if node['mosh']['use_ppa']
+  include_recipe 'apt'
+
+  apt_repository 'mosh-ppa' do
+    uri 'http://ppa.launchpad.net/keithw/mosh/ubuntu'
+    distribution node['lsb']['codename']
+    components ['main']
+    keyserver 'keyserver.ubuntu.com'
+    key '7BF6DFCD'
+    action :add
+  end
+end
+
+if node['mosh']['use_epel']
+  include_recipe 'yum-epel'
+end
+
+package 'mosh' do
+  package_name node['mosh']['package_name']
+  action :install
+end

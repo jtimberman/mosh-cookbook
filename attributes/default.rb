@@ -1,23 +1,13 @@
-default['mosh']['install_type']    = 'package'
-default['mosh']['version']         = '1.2.4'
-default['mosh']['source_url']      = 'http://mosh.mit.edu/mosh-1.2.4.tar.gz'
-default['mosh']['source_checksum'] = 'e74d0d323226046e402dd469a176075fc2013b69b0e67cea49762c957175df46'
-default['mosh']['configure_flags'] = []
-default['mosh']['source_depends']  = case node['platform']
-                                     when 'ubuntu', 'debian'
-                                       %w(protobuf-compiler
-                                          libprotobuf-dev
-                                          libboost-dev
-                                          libutempter-dev
-                                          libncurses5-dev
-                                          zlib1g-dev)
-                                     when 'redhat', 'centos', 'oracle', 'scientific', 'amazon'
-                                       %w(protobuf-compiler
-                                          protobuf-devel
-                                          boost-devel
-                                          libutempter-devel
-                                          ncurses-devel
-                                          zlib-devel)
-                                     else
-                                       []
-                                     end
+default['mosh']['package_name'] = 'mosh'
+default['mosh']['use_ppa']      = false
+default['mosh']['use_epel']     = false
+
+case node['platform_family']
+when 'debian'
+  if platform?('ubuntu') && node['platform_version'].to_f < 12.04
+    default['mosh']['use_ppa'] = true
+  end
+when 'rhel' then default['mosh']['use_epel'] = true
+when 'gentoo' then default['mosh']['package_name'] = 'net-misc/mosh'
+when 'freebsd' then default['mosh']['package_name'] = 'net/mosh'
+end
