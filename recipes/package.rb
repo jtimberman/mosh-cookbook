@@ -16,40 +16,39 @@
 # limitations under the License.
 #
 
-case node['platform']
-when "ubuntu"
+case node['platform_family']
+when 'debian'
   if node['platform_version'].to_f < 12.04
 
-    include_recipe "apt"
+    include_recipe 'apt'
 
-    apt_repository "mosh-ppa" do
-      uri "http://ppa.launchpad.net/keithw/mosh/ubuntu"
+    apt_repository 'mosh-ppa' do
+      uri 'http://ppa.launchpad.net/keithw/mosh/ubuntu'
       distribution node['lsb']['codename']
       components ['main']
-      keyserver "keyserver.ubuntu.com"
-      key "7BF6DFCD"
+      keyserver 'keyserver.ubuntu.com'
+      key '7BF6DFCD'
       action :add
     end
 
   end
 
-when "redhat", "centos", "scientific", "amazon"
-  include_recipe "yum::epel"
+when 'rhel'
+  include_recipe 'yum::epel'
 end
 
-
-package "mosh" do
+package 'mosh' do
   package_name case node['platform']
-               when "gentoo"
-                 "net-misc/mosh"
-               when "arch"
-                 "mobile-shell-git"
-               when "freebsd"
-                 "net/mosh"
-               when "mac_os_x"
-                 use_brew? ? "mobile-shell" : "mosh"
+               when 'gentoo'
+                 'net-misc/mosh'
+               when 'arch'
+                 'mobile-shell-git'
+               when 'freebsd'
+                 'net/mosh'
+               when 'mac_os_x'
+                 use_brew? ? 'mobile-shell' : 'mosh'
                else
-                 "mosh"
+                 'mosh'
                end
   action :install
 end

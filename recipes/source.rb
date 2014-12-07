@@ -17,16 +17,15 @@
 # limitations under the License.
 #
 
-build_dir = "#{Chef::Config[:file_cache_path]}/mosh-source"
 version = node['mosh']['version']
 
-include_recipe "apt" if platform?("debian","ubuntu")
+include_recipe 'apt' if platform?('debian', 'ubuntu')
 
 node['mosh']['source_depends'].each do |pkg|
   package pkg
 end
 
-bash "build-mosh" do
+bash 'build-mosh' do
   cwd Chef::Config[:file_cache_path]
   code <<-EOH
 tar -zxvf mosh-#{version}.tar.gz
@@ -41,5 +40,5 @@ end
 remote_file "#{Chef::Config[:file_cache_path]}/mosh-#{version}.tar.gz" do
   source node['mosh']['source_url']
   checksum node['mosh']['source_checksum']
-  notifies :run, resources(:bash => "build-mosh"), :immediately
+  notifies :run, 'bash[build-mosh]', :immediately
 end
