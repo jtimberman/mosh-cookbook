@@ -1,3 +1,7 @@
+## v0.4.0
+
+- Remove source recipe and related attributes
+
 ## v0.3.0
 
 - dont namespace use_brew? in Chef::Recipe, makes it unavailable in a resource
