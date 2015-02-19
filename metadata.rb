@@ -14,6 +14,7 @@ depends 'yum'
 depends 'yum-epel'
 
 unless defined?(Ridley::Chef::Cookbook::Metadata)
-  source_url       'https://github.com/jtimberman/mosh-cookbook'
-  issues_url       'https://github.com/jtimberman/mosh-cookbook/issues'
+  # Prevent a crash when using this cookbook with Chef < 12
+  source_url 'https://github.com/jtimberman/mosh-cookbook'        if respond_to?(:source_url)
+  issues_url 'https://github.com/jtimberman/mosh-cookbook/issues' if respond_to?(:issues_url)
 end
