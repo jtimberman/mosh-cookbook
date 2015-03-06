@@ -13,7 +13,7 @@ depends 'apt'
 depends 'yum'
 depends 'yum-epel'
 
-unless defined?(Ridley::Chef::Cookbook::Metadata)
+unless defined?(Ridley::Chef::Cookbook::Metadata) || Gem::Requirement.new('< 12').satisfied_by?(Gem::Version.new(Chef::VERSION))
   source_url       'https://github.com/jtimberman/mosh-cookbook'
   issues_url       'https://github.com/jtimberman/mosh-cookbook/issues'
 end
