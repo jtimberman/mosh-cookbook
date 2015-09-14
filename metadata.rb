@@ -10,6 +10,8 @@ version          '0.4.0'
 end
 
 depends 'apt'
+depends 'ark'
+depends 'build-essential'
 depends 'yum'
 depends 'yum-epel'
 
