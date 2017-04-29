@@ -40,9 +40,10 @@ following platforms:
 * Gentoo
 * Mac OS X
 
-# License and Author
+# License and Authors
 
 Author:: Joshua Timberman <opensource@housepub.org>
+Author:: Brian Hays <brian.hays@gmail.com>
 Copyright:: Copyright (c) 2012-2014, Joshua Timberman
 License:: Apache License, Version 2.0
 

@@ -1,3 +1,8 @@
+## v0.5.0
+
+- Update for Rubocop and Foodcritic checks
+- add integration test
+
 ## v0.4.0
 
 - Remove source recipe and related attributes
