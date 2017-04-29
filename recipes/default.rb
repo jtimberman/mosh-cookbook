@@ -30,9 +30,7 @@ if node['mosh']['use_ppa']
   end
 end
 
-if node['mosh']['use_epel']
-  include_recipe 'yum-epel'
-end
+include_recipe 'yum-epel' if node['mosh']['use_epel']
 
 package 'mosh' do
   package_name node['mosh']['package_name']
